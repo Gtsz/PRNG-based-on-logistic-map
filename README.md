@@ -9,22 +9,22 @@ NOT USABLE!!
 	static uint n;
 	
 	uint rand()
-	{  // bit form to m := 4 * m * (1 - m)
-		// where m <- (0,1) and n <- (0,M)
-		// where (0,M) -> (0,1)
-		n = (n>>K) * (~n>>K) | (n>>K)&1;
-		return n;
+	{ // bit form to m := 4 * m * (1 - m)
+	   // where m <- (0,1) and n <- (0,M)
+	   // where (0,M) -> (0,1)
+	    n = (n>>K) * (~n>>K) | (n>>K)&1;
+	    return n;
 	}
 	
 	void srand(uint seed)
-	{  // let V = (0,M)\{M/2,M/2+1}
-		// if seed <- V
-		// then n </- V (n <- Z+)
-		if (seed==0 || seed==M/2
-				|| seed==M/2+1 || seed==M)
-			seed += M/3; // shift if invalid
-		n = seed<<K; // sensitive to ones
-		for (uint i=0; i<20; ++i)
-			rand(); // initializing
+	{ // let V = (0,M)\{M/2,M/2+1}
+	   // if seed <- V
+	   // then n </- V (n <- Z+)
+	    if (seed==0 || seed==M/2
+	            || seed==M/2+1 || seed==M)
+	        seed += M/3; // shift if invalid
+	    n = seed<<K; // sensitive to ones
+	    for (uint i=0; i<20; ++i)
+	        rand(); // initializing
 	}
 ​
